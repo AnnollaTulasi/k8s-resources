@@ -1,24 +1,23 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: nginx-service
+  name: nginx-lb
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:  #labels are used as selectors
-    demo: nodeport
+    demo: lb
   ports:
     - protocol: TCP
       port: 80 #serviceport
       targetPort: 80 #target container port
       nodePort: 30007
-
 ---
 kind: Pod
 apiVersion: v1
 metadata:
   name: backend-pod
   labels:
-    demo: nodeport
+    demo: lb
 spec:
   containers:
   - name: nginx
