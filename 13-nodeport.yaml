@@ -1,0 +1,24 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-service
+spec:
+  type: NodePort
+  selector:  #labels are used as selectors
+    demo: nodeport
+  ports:
+    - protocol: TCP
+      port: 80 #serviceport
+      targetPort: 80 #target container port
+
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: backend-pod
+  labels:
+    demo: nodeport
+spec:
+  containers:
+  - name: nginx
+    image: nginx
