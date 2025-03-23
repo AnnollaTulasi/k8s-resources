@@ -5,6 +5,20 @@ metadata:
   namespace: expense
 spec:
   serviceAccount: expense-mysql-secret
+  initCotainers:
+  - name: awscli
+    image: amazon/aws-cli
+    command: ['sh','-c','aws secretmanager get-secret-value --secret-id expense/mysql/creds --query SecretString --output text > /secrets/.env']
+    volumeMounts:
+    - mountPath: /secrets
+      name: secret-volume
   containers:
   - name: nginx
     image: nginx
+    volumeMounts:
+    - mountPath: /secrets
+      name: secret-volume
+  volumes:
+  - name: secret-volume
+    emptyDir: {}
+    
