@@ -3,9 +3,11 @@ kind: Deployment
 metadata:
   name: nginx
   labels:
-    app: nginx
-    tier: frontend
-    purpose: deployment
+    project: expense
+    component: backend
+    environment: dev
+    version: "1.0.0"
+    demo: lb
 spec:
   replicas: 3
   selector:
