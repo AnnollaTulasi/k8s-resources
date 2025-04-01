@@ -12,7 +12,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      project: expense
+      component: backend
+      environment: dev
+      version: "1.0.0"
+      demo: lb
   template:
     metadata:
       labels:
