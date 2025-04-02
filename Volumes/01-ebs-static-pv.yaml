@@ -10,4 +10,4 @@ spec:
   csi:
     driver: ebs.csi.aws.com
     fsType: ext4
-    volumeHandle: vol-04d2af085d1c2fdee  # should add the volume id whickh we createed
+    volumeHandle: vol-06482b652ad74cf09  # should add the volume id whickh we createed
